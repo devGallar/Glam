@@ -31,7 +31,7 @@
                 <?php if ($display_first_name): ?>
                     <div class="mb-3">
                         <label for="first-name" class="form-label">
-                            <?= lang('first_name') ?>
+                            Nombre Completo
                             <?php if ($require_first_name): ?>
                                 <span class="text-danger">*</span>
                             <?php endif; ?>
@@ -75,8 +75,8 @@
                                 <span class="text-danger">*</span>
                             <?php endif; ?>
                         </label>
-                        <input type="text" id="phone-number" maxlength="60"
-                               class="<?= $require_phone_number ? 'required' : '' ?> form-control"/>
+                        <input type="tel" id="phone-number" maxlength="60"
+                               class="<?= $require_phone_number ? 'required' : '' ?> form-control" pattern="[0-9]*" inputmode="numeric"/>
                     </div>
                 <?php endif; ?>
 

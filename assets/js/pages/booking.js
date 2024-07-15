@@ -965,12 +965,16 @@ App.Pages.Booking = (function () {
             serviceSelect.value = '';
         });
     });
-
+    document.getElementById('phone-number').addEventListener('input', function (e) {
+        this.value = this.value.replace(/\D/g, '');
+    });
+    
     return {
         manageMode,
         updateConfirmFrame,
         updateServiceDescription,
         validateCustomerForm,
     };
+    
     
 })();
