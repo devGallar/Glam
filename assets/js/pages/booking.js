@@ -340,7 +340,7 @@ App.Pages.Booking = (function () {
 
             $selectProvider.empty();
 
-            $selectProvider.append(new Option(lang('please_select'), ''));
+            $selectProvider.append(new Option(lang('Selecciona uno'), ''));
 
             vars('available_providers').forEach((provider) => {
                 // If the current provider is able to provide the selected service, add him to the list box.
@@ -918,8 +918,53 @@ App.Pages.Booking = (function () {
             `).appendTo($serviceDescription);
         }
     }
+    document.addEventListener('DOMContentLoaded', function () {
+    const categorySelect = document.getElementById('select-category');
+    const serviceSelect = document.getElementById('select-service');
 
+    categorySelect.addEventListener('change', function () {
+        const selectedCategory = this.value;
+
+        // Ocultar todas las opciones de servicios
+        Array.from(serviceSelect.options).forEach(option => {
+            option.style.display = 'none';
+        });
+
+        // Mostrar las opciones de servicios correspondientes a la categoría seleccionada
+        Array.from(serviceSelect.options).forEach(option => {
+            if (option.getAttribute('data-category') === selectedCategory || selectedCategory === '') {
+                option.style.display = 'block';
+            }
+        });
+
+        // Restablecer la selección de servicios
+        serviceSelect.value = '';
+    });
+});
     document.addEventListener('DOMContentLoaded', initialize);
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.getElementById('select-category');
+        const serviceSelect = document.getElementById('select-service');
+    
+        categorySelect.addEventListener('change', function () {
+            const selectedCategory = this.value;
+    
+            // Ocultar todas las opciones de servicios
+            Array.from(serviceSelect.options).forEach(option => {
+                option.style.display = 'none';
+            });
+    
+            // Mostrar las opciones de servicios correspondientes a la categoría seleccionada
+            Array.from(serviceSelect.options).forEach(option => {
+                if (option.getAttribute('data-category') === selectedCategory || selectedCategory === '') {
+                    option.style.display = 'block';
+                }
+            });
+    
+            // Restablecer la selección de servicios
+            serviceSelect.value = '';
+        });
+    });
 
     return {
         manageMode,
@@ -927,4 +972,5 @@ App.Pages.Booking = (function () {
         updateServiceDescription,
         validateCustomerForm,
     };
+    
 })();
